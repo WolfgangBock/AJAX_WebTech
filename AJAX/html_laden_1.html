@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AJAX HTML</title>
+  </head>
+  <body>
+    <section id="content">
+
+    </section>
+
+    <script>
+      fetch('externes_html.txt')
+        .then((response) => {
+          return response.text();
+        })
+        .then((data) => {
+          console.log(data);
+          const content = document.querySelector('#content');
+          content.innerHTML = data;
+        })
+        .catch(function(error) {
+          console.log('Error: ' + error.message);
+        });
+    </script>
+  </body>
+</html>

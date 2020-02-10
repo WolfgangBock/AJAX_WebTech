@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript Objekt 6</title>
+  </head>
+  <body>
+    <section id="container">
+
+    </section>
+
+    <script>
+      let person1 = {
+        alter: 42,
+        anrede: 'Herr',
+        name: {
+          vorname: 'Urs',
+          nachname: 'Thöny'
+        },
+        interessen: ['Film', 'Fahrrad fahren']
+      };
+
+    // Funktionsaufruf um mit einem person-Objekt eine HTML-Struktur zu erzeugen und zurückzugeben
+      function person_anzeige(person){
+      // HTML-Struktur innerhalb von JS erzeugen
+      // HTML-Struktur existieren nur in JS und werden noch nicht im Browser angezeigt.
+        const person_anzeige = document.createElement('ul');
+        const personen_anrede = document.createElement('li');
+        person_anzeige.appendChild(personen_anrede);
+        const personen_name = document.createElement('li');
+        person_anzeige.appendChild(personen_name);
+        const personen_alter = document.createElement('li');
+        person_anzeige.appendChild(personen_alter);
+        const person_interessen = document.createElement('li');
+        person_anzeige.appendChild(person_interessen);
+
+      // Informationen sammeln und aufbereiten
+        const interessen_liste = document.createElement('ul');
+        for(let i = 0; i < person.interessen.length; i++){
+          const interessen_listenpunkt = document.createElement('li');
+          interessen_listenpunkt.textContent = person.interessen[i];
+          interessen_liste.appendChild(interessen_listenpunkt);
+        }
+
+      // Informationen in HTML-Elemente schreiben
+      // HTML-Elemente existieren nur in JS und werden noch nicht im Browser angezeigt.
+        personen_anrede.textContent = "Anrede: " + person.anrede;
+        personen_name.textContent = "Name: " + person.name.vorname + " " + person.name.nachname;
+        personen_alter.textContent = "Alter: " + person.alter;
+        person_interessen.textContent = "Interessen: ";
+        person_interessen.appendChild(interessen_liste);
+
+      // Vollständiges Objekt wird von der Funktion als Ergebnis zurückgegeben.
+      // HTML-Elemente existieren nur in JS und werden noch nicht im Browser angezeigt.
+        return person_anzeige;
+      }
+
+      // Ergebnis des Funktionsaufrufs mit person1 in die Konstante p1 speichern
+      const p1 = person_anzeige(person1);
+
+      // Inhalt von p1 als nächstes Kind-Element in Element mit id="container" schreiben.
+      // -> Anzeige im Browser
+      var html_container = document.querySelector('#container');
+      html_container.appendChild(p1);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="bus_buttons">
+        <button class="bus_btn" data-bus-linie="linie1a">1 Lachen – Bahnhofplatz – Plankis – Domat/Ems – Rhäzüns</button>
+        <button class="bus_btn" data-bus-linie="linie1b">1 Lachen – Bahnhofplatz – Plankis – Felsberg</button>
+        <button class="bus_btn" data-bus-linie="linie2a">2 Obere Au – Bahnhofplatz – Fürstenwald</button>
+        <button class="bus_btn" data-bus-linie="linie2b">2 Obere Au – Bahnhofplatz – Kleinwaldegg</button>
+        <button class="bus_btn" data-bus-linie="linie3a">3 Austrasse – Bahnhofplatz – Stelleweg – Haldenstein</button>
+        <button class="bus_btn" data-bus-linie="linie3b">3 Austrasse – Bahnhofplatz – Trimmis – Untervaz</button>
+        <button class="bus_btn" data-bus-linie="linie4">4 Austrasse – Bahnhofplatz – Seniorenzentrum Cadonau</button>
+        <button class="bus_btn" data-bus-linie="linie6">6 Bahnhofplatz – City West</button>
+        <button class="bus_btn" data-bus-linie="linie9">9 Bahnhofplatz – Meiersboden</button>
+      </div>
+      <div id="bus_anzeige">
+
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+        var bus_buttons = document.getElementsByClassName('bus_btn');
+        const bus_anzeige = document.querySelector('#bus_anzeige');
+        for(let i = 0; i < bus_buttons.length; i++){
+          bus_buttons[i].addEventListener("click", function(){
+            console.log(this.getAttribute("data-bus-linie"));
+            zeige_bus_linie(this.getAttribute("data-bus-linie"));
+          })
+        }
+        function zeige_bus_linie(linie){
+          let url = "bus_chur/buslinien.php?linienid=" + linie;
+          fetch(url)
+            .then((response) => {
+              return response.text();
+            })
+            .then((data) => {
+              console.log(data);
+          //    bus_anzeige.innerHTML = data;
+              const bus_obj = JSON.parse(data);
+              linien_anzeige(bus_obj);
+            })
+            .catch(function(error) {
+              console.log('Error: ' + error.message);
+            });
+        }
+      });
+
+
+      function linien_anzeige(linie){
+        const bus_anzeige = document.querySelector('#bus_anzeige');
+
+        const liniennummer_anzeige = document.createElement('h2');
+        liniennummer_anzeige.textContent = linie.liniennummer;
+
+        const kurzbeschreibung_anzeige = document.createElement('h3');
+        kurzbeschreibung_anzeige.textContent = linie.kurzbeschreibung;
+
+        const haltestellen_liste = document.createElement('ul');
+        for(let i = 0; i < linie.haltestellen.length; i++){
+          const haltestelle = document.createElement('li');
+          haltestelle.textContent = linie.haltestellen[i];
+          haltestellen_liste.appendChild(haltestelle);
+        }
+
+        bus_anzeige.appendChild(liniennummer_anzeige);
+        bus_anzeige.appendChild(kurzbeschreibung_anzeige);
+        bus_anzeige.appendChild(haltestellen_liste);
+
+      }
+    </script>
+  </body>
+</html>

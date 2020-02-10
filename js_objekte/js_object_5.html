@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript Objekt 5</title>
+  </head>
+  <body>
+    <section id="container">
+
+    </section>
+
+    <script>
+      let person1 = {
+        alter: 42,
+        anrede: 'Herr',
+        name: {
+          vorname: 'Urs',
+          nachname: 'Thöny'
+        },
+        interessen: ['Film', 'Fahrrad fahren']
+      };
+
+    // HTML-Struktur innerhalb von JS erzeugen
+    // HTML-Struktur existieren nur in JS und wird noch nicht im Browser angezeigt.
+      const person_anzeige = document.createElement('ul');
+      const personen_anrede = document.createElement('li');
+      person_anzeige.appendChild(personen_anrede);
+      const personen_name = document.createElement('li');
+      person_anzeige.appendChild(personen_name);
+      const personen_alter = document.createElement('li');
+      person_anzeige.appendChild(personen_alter);
+      const person_interessen = document.createElement('li');
+      person_anzeige.appendChild(person_interessen);
+
+    // Informationen sammeln und aufbereiten
+      const interessen_liste = document.createElement('ul');
+      for(let i = 0; i < person1.interessen.length; i++){
+        const interessen_listenpunkt = document.createElement('li');
+        interessen_listenpunkt.textContent = person1.interessen[i];
+        interessen_liste.appendChild(interessen_listenpunkt);
+      }
+
+    // Informationen in HTML-Elemente schreiben
+    // HTML-Elemente existieren nur in JS und werden noch nicht im Browser angezeigt.
+      personen_anrede.textContent = "Anrede: " + person1.anrede;
+      personen_name.textContent = "Name: " + person1.name.vorname + " " + person1.name.nachname;
+      personen_alter.textContent = "Alter: " + person1.alter;
+      person_interessen.textContent = "Interessen: ";
+      person_interessen.appendChild(interessen_liste);
+
+    // HTML-Elemente aus JS in das HTML-Element mit der id="container" schreiben.
+    // -> Anzeige im Browser
+      var html_container = document.querySelector('#container');
+      html_container.appendChild(person_anzeige);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Musik</h1>
+    <div id="lied">
+      <h2 class="lied_titel">...</h2>
+      <ul>
+        <li>Künstler: <span class="lied_artist">...</span></li>
+        <li>Autor(en): <span class="lied_autor">...</span></li>
+        <li>Genre: <span class="lied_genre">...</span></li>
+        <li>Erscheinungsdatum: <span class="lied_erschienen">...</span></li>
+        <li>Album: <span class="lied_album">...</span></li>
+        <li>Dauer: <span class="lied_dauer">...</span></li>
+        <li>Label: <span class="lied_label">...</span></li>
+      </ul>
+    </div>
+
+    <script>
+      const playlist = {
+        track1: {
+          titel : 'Bohemian Rhapsody',
+          artist : 'Queen',
+          autor : ['Freddy Mercury'],
+          genre : 'Progressive Rock',
+          erschienen : '31 Oct 1975',
+          album : 'A Night at the Opera',
+          dauer: {
+            singe : '5:55'
+          },
+          label: ['EMI', ' Elektra', ' Parlophone', ' Hollywood']
+        },
+        track2 : {
+          titel : 'Heroes',
+          artist : 'David Bowie',
+          autor : ['David Bowie', ' Brian Eno'],
+          genre : 'Art Rock',
+          erschienen : '23 Sep 1977',
+          album : 'Heroes',
+          dauer: {
+            single : '3:32',
+            album : '6:07'
+          },
+          label: ['RCA Records']
+        }
+      }
+
+      var lied1 = document.querySelector('#lied1');
+      lied1.getElementsByClassName('lied_titel')[0].innerHTML = track1.titel;
+      lied1.getElementsByClassName('lied_artist')[0].innerHTML = track1.artist;
+      lied1.getElementsByClassName('lied_autor')[0].innerHTML = track1.autor;
+      lied1.getElementsByClassName('lied_genre')[0].innerHTML = track1.genre;
+      lied1.getElementsByClassName('lied_erschienen')[0].innerHTML = track1.erschienen;
+      lied1.getElementsByClassName('lied_album')[0].innerHTML = track1.album;
+
+      var dauer_text = '<ul>';
+      for (var eigenschaft in track1.dauer) {
+        console.log(eigenschaft + " = " + track1.dauer[eigenschaft]);
+        dauer_text += '<li>' + eigenschaft + ': ' + track1.dauer[eigenschaft] + '</li>';
+      }
+      dauer_text += '</ul>';
+      lied1.getElementsByClassName('lied_dauer')[0].innerHTML = dauer_text;
+
+      lied1.getElementsByClassName('lied_label')[0].innerHTML = track1.label;
+
+
+      var lied2 = document.querySelector('#lied2');
+      lied2.getElementsByClassName('lied_titel')[0].innerHTML = track2.titel;
+      lied2.getElementsByClassName('lied_artist')[0].innerHTML = track2.artist;
+      lied2.getElementsByClassName('lied_autor')[0].innerHTML = track2.autor;
+      lied2.getElementsByClassName('lied_genre')[0].innerHTML = track2.genre;
+      lied2.getElementsByClassName('lied_erschienen')[0].innerHTML = track2.erschienen;
+      lied2.getElementsByClassName('lied_album')[0].innerHTML = track2.album;
+
+      var dauer_text = '<ul>';
+      for (var eigenschaft in track2.dauer) {
+        dauer_text += '<li>' + eigenschaft + ': ' + track2.dauer[eigenschaft] + '</li>';
+      }
+      dauer_text += '</ul>';
+      lied2.getElementsByClassName('lied_dauer')[0].innerHTML = dauer_text;
+
+      lied2.getElementsByClassName('lied_label')[0].innerHTML = track2.label;
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>JSON</title>
+  </head>
+  <body>
+    <section id="content">
+
+    </section>
+
+    <script>
+    fetch('personen.json')
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(function(error) {
+        console.log('Error: ' + error.message);
+      });
+    </script>
+  </body>
+</html>
