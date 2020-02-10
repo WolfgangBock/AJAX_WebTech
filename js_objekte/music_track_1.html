@@ -60,43 +60,7 @@
         label: ['RCA Records']
       }
 
-  // Track 1
-      var lied1 = document.querySelector('#lied1');
-      lied1.getElementsByClassName('lied_titel')[0].innerHTML = track1.titel;
-      lied1.getElementsByClassName('lied_artist')[0].innerHTML = track1.artist;
-      lied1.getElementsByClassName('lied_autor')[0].innerHTML = track1.autor;
-      lied1.getElementsByClassName('lied_genre')[0].innerHTML = track1.genre;
-      lied1.getElementsByClassName('lied_erschienen')[0].innerHTML = track1.erschienen;
-      lied1.getElementsByClassName('lied_album')[0].innerHTML = track1.album;
-
-      const dauer_list = document.createElement('ul');
-      for (var eigenschaft in track1.dauer) {
-        const dauer_list_item = document.createElement('li');
-        dauer_list_item.textContent = eigenschaft + ': ' + track1.dauer[eigenschaft];
-        dauer_list.appendChild(dauer_list_item);
-        console.log(dauer_list.innerHTML);
-      }
-      lied1.getElementsByClassName('lied_dauer')[0].innerHTML = dauer_list;
-
-      lied1.getElementsByClassName('lied_label')[0].innerHTML = track1.label;
-
-  // Track 2
-      var lied2 = document.querySelector('#lied2');
-      lied2.getElementsByClassName('lied_titel')[0].innerHTML = track2.titel;
-      lied2.getElementsByClassName('lied_artist')[0].innerHTML = track2.artist;
-      lied2.getElementsByClassName('lied_autor')[0].innerHTML = track2.autor;
-      lied2.getElementsByClassName('lied_genre')[0].innerHTML = track2.genre;
-      lied2.getElementsByClassName('lied_erschienen')[0].innerHTML = track2.erschienen;
-      lied2.getElementsByClassName('lied_album')[0].innerHTML = track2.album;
-
-      var dauer_text = '<ul>';
-      for (var eigenschaft in track2.dauer) {
-        dauer_text += '<li>' + eigenschaft + ': ' + track2.dauer[eigenschaft] + '</li>';
-      }
-      dauer_text += '</ul>';
-      lied2.getElementsByClassName('lied_dauer')[0].innerHTML = dauer_text;
-
-      lied2.getElementsByClassName('lied_label')[0].innerHTML = track2.label;
+  
 
     </script>
   </body>
