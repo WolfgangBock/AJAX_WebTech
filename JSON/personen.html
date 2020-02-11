@@ -10,16 +10,58 @@
     </section>
 
     <script>
+
+    var html_container = document.querySelector('#content');
     fetch('personen.json')
       .then((response) => {
         return response.json();
       })
-      .then((data) => {
-        console.log(data);
+      .then((meinObj) => {
+
+        for(let i = 0; i < meinObj.personen.length; i++){
+          let meine_person = meinObj.personen[i];
+          const person_ul = person_anzeige(meine_person);
+          html_container.appendChild(person_ul);
+        }
       })
       .catch(function(error) {
         console.log('Error: ' + error.message);
       });
+
+
+      function person_anzeige(person){
+      // HTML-Struktur innerhalb von JS erzeugen
+      // HTML-Struktur existieren nur in JS und werden noch nicht im Browser angezeigt.
+        const person_anzeige = document.createElement('ul');
+        const personen_anrede = document.createElement('li');
+        person_anzeige.appendChild(personen_anrede);
+        const personen_name = document.createElement('li');
+        person_anzeige.appendChild(personen_name);
+        const personen_alter = document.createElement('li');
+        person_anzeige.appendChild(personen_alter);
+        const person_interessen = document.createElement('li');
+        person_anzeige.appendChild(person_interessen);
+
+      // Informationen sammeln und aufbereiten
+        const interessen_liste = document.createElement('ul');
+        for(let i = 0; i < person.interessen.length; i++){
+          const interessen_listenpunkt = document.createElement('li');
+          interessen_listenpunkt.textContent = person.interessen[i];
+          interessen_liste.appendChild(interessen_listenpunkt);
+        }
+
+      // Informationen in HTML-Elemente schreiben
+      // HTML-Elemente existieren nur in JS und werden noch nicht im Browser angezeigt.
+        personen_anrede.textContent = "Anrede: " + person.anrede;
+        personen_name.textContent = "Name: " + person.name.vorname + " " + person.name.nachname;
+        personen_alter.textContent = "Alter: " + person.alter;
+        person_interessen.textContent = "Interessen: ";
+        person_interessen.appendChild(interessen_liste);
+
+      // Vollständiges Objekt wird von der Funktion als Ergebnis zurückgegeben.
+      // HTML-Elemente existieren nur in JS und werden noch nicht im Browser angezeigt.
+        return person_anzeige;
+      }
     </script>
   </body>
 </html>

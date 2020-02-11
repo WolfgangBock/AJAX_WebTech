@@ -1,0 +1,13 @@
+{
+   "titel" : "Heroes",
+   "artist" : "David Bowie",
+   "autor" : ["David Bowie", " Brian Eno"],
+   "genre" : "Art Rock",
+   "erschienen" : "23 Sep 1977",
+   "album" : "Heroes",
+   "dauer" : {
+     "single" : "3:32",
+     "album" : "6:07"
+   },
+   "label": ["RCA Records"]
+ }

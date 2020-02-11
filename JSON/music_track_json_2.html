@@ -5,35 +5,42 @@
     <title></title>
   </head>
   <body>
+    <div class="track_buttons">
+      <button class="track_btn" data-track="t1">Bohemian Rhapsody</button>
+      <button class="track_btn" data-track="t2">Heroes</button>
 
+    </div>
+    <div id="track_show">
 
-    <script type="text/javascript">
-      const track1 = {
-        titel : 'Bohemian Rhapsody',
-        artist : 'Queen',
-        autor : ['Freddy Mercury'],
-        genre : 'Progressive Rock',
-        erschienen : '31 Oct 1975',
-        album : 'A Night at the Opera',
-        dauer: {
-          single : '5:55'
-        },
-        label: ['EMI', ' Elektra', ' Parlophone', ' Hollywood']
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      let track_show = document.querySelector('#track_show');
+
+      var track_buttons = document.getElementsByClassName('track_btn');
+      const track = document.querySelector('#track');
+      for(let i = 0; i < track_buttons.length; i++){
+        track_buttons[i].addEventListener("click", function(){
+          zeige_track(this.getAttribute("data-track"));
+        })
       }
-
-      const track2 = {
-        titel : 'Heroes',
-        artist : 'David Bowie',
-        autor : ['David Bowie', ' Brian Eno'],
-        genre : 'Art Rock',
-        erschienen : '23 Sep 1977',
-        album : 'Heroes',
-        dauer: {
-          single : '3:32',
-          album : '6:07'
-        },
-        label: ['RCA Records']
+      function zeige_track(track){
+        let url = track + ".json";
+        fetch(url)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            mein_track = track_anzeige(data);
+            track_show.removeChild(track_show.firstChild);
+            track_show.appendChild(mein_track);
+          })
+          .catch(function(error) {
+            console.log('Error: ' + error.message);
+          });
       }
+    });
 
       function track_anzeige(track) {
         const track_eigenschaften = document.createElement('ul');
@@ -61,15 +68,6 @@
 
         return track_eigenschaften;
       }
-
-      const t1 = track_anzeige(track1);
-      const t2 = track_anzeige(track2);
-      console.log(t1);
-      // Inhalt von p1 und p2 nacheinander als Kind-Element in Element mit id="container" schreiben.
-      // -> Anzeige im Browser
-      var body_element = document.querySelector('body');
-      body_element.appendChild(t1);
-      body_element.appendChild(t2);
 
 
     </script>

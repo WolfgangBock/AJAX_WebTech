@@ -1,0 +1,12 @@
+{
+  "titel" : "Bohemian Rhapsody",
+  "artist" : "Queen",
+  "autor" : ["Freddy Mercury"],
+  "genre" : "Progressive Rock",
+  "erschienen" : "31 Oct 1975",
+  "album" : "A Night at the Opera",
+  "dauer" : {
+    "single" : "5:55"
+  },
+  "label": ["EMI", " Elektra", " Parlophone", " Hollywood"]
+}
